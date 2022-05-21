@@ -8,4 +8,6 @@ const usersSlice = createSlice({
   },
 });
 
+export const { loadUsers: loadUsersActionCreator } = usersSlice.actions;
+
 export default usersSlice.reducer;
