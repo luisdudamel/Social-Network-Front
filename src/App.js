@@ -1,3 +1,5 @@
+import Header from "./components/Header/Header";
+import { Userlist } from "./components/UsersList/UsersList";
 import GlobalStyle from "./globalStyles";
 
 function App() {
@@ -5,7 +7,10 @@ function App() {
     <>
       <GlobalStyle />
       <div className="App">
-        <div className="container-fluid">En construccion</div>
+        <div className="main-container container-fluid">
+          <Header></Header>
+          <Userlist></Userlist>
+        </div>
       </div>
     </>
   );
