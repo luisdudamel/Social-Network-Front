@@ -4,6 +4,10 @@ const GlobalStyle = createGlobalStyle`
 
 .main-container{
 height: 100vh;
+display: flex;
+flex-direction: column;
+align-content: center;
+font-family: Roboto;
 }
 `;
 
