@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import styled from "styled-components";
 
@@ -27,6 +28,21 @@ const StyledLoginForm = styled.div`
 `;
 
 const LoginForm = () => {
+  const emptyFields = {
+    username: "",
+    password: "",
+  };
+
+  const [formData, setFormData] = useState(emptyFields);
+  const [buttonDisabled, setButtonDisable] = useState(true);
+
+  const fillForm = (event) => {
+    setFormData({
+      ...formData,
+      [event.target.id]: event.target.value,
+    });
+  };
+
   return (
     <StyledLoginForm>
       You need to log in to see your friends
@@ -40,7 +56,12 @@ const LoginForm = () => {
           <Form.Group className="mb-3">
             <Form.Label htmlFor="username">Username</Form.Label>
             <Col xs={7}>
-              <Form.Control id="username" placeholder="Enter Username" />
+              <Form.Control
+                id="username"
+                placeholder="Enter Username"
+                value={formData.username}
+                onChange={fillForm}
+              />
             </Col>
           </Form.Group>
           <Form.Group className="mb-3">
@@ -51,6 +72,8 @@ const LoginForm = () => {
                 id="password"
                 type="password"
                 placeholder="Password"
+                value={formData.password}
+                onChange={fillForm}
               />
             </Col>
           </Form.Group>
