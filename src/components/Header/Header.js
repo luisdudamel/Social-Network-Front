@@ -2,7 +2,7 @@ import Select from "react-select";
 import styled from "styled-components";
 
 const StyledHeader = styled.div`
-  border: solid red;
+  border-bottom: solid grey;
   height: 10vh;
   display: flex;
   justify-content: space-evenly;
