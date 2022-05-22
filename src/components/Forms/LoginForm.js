@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import styled from "styled-components";
 
@@ -35,6 +35,14 @@ const LoginForm = () => {
 
   const [formData, setFormData] = useState(emptyFields);
   const [buttonDisabled, setButtonDisable] = useState(true);
+
+  useEffect(() => {
+    if (formData.username !== "" && formData.password !== "") {
+      setButtonDisable(false);
+    } else {
+      setButtonDisable(true);
+    }
+  }, [formData]);
 
   const fillForm = (event) => {
     setFormData({
@@ -79,7 +87,7 @@ const LoginForm = () => {
           </Form.Group>
         </Row>
         <Button
-          disabled={true}
+          disabled={buttonDisabled}
           variant="primary"
           type="submit"
           onClick={() => {}}
