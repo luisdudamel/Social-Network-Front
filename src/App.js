@@ -1,5 +1,7 @@
+import { Navigate, Route, Routes } from "react-router-dom";
+import LoginForm from "./components/Forms/LoginForm";
 import Header from "./components/Header/Header";
-import { Userlist } from "./components/UsersList/UsersList";
+
 import GlobalStyle from "./globalStyles";
 
 function App() {
@@ -9,7 +11,10 @@ function App() {
       <div className="App">
         <div className="main-container container-fluid">
           <Header></Header>
-          <Userlist></Userlist>
+          <Routes>
+            <Route path="/" element={<Navigate to="/users/login" />} />
+            <Route path="/users/login" element={<LoginForm />} />
+          </Routes>
         </div>
       </div>
     </>
