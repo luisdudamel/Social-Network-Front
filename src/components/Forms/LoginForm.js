@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { loginThunk } from "../../redux/thunks/usersThunks";
 
 const StyledLoginForm = styled.div`
   display: flex;
@@ -36,6 +38,8 @@ const LoginForm = () => {
   const [formData, setFormData] = useState(emptyFields);
   const [buttonDisabled, setButtonDisable] = useState(true);
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
     if (formData.username !== "" && formData.password !== "") {
       setButtonDisable(false);
@@ -51,13 +55,19 @@ const LoginForm = () => {
     });
   };
 
+  const submitLogin = (event) => {
+    event.preventDefault();
+    dispatch(loginThunk(formData));
+    setFormData(emptyFields);
+  };
+
   return (
     <StyledLoginForm>
       You need to log in to see your friends
       <Form
         className="d-flex login-form"
         autoComplete="off"
-        onSubmit={() => {}}
+        onSubmit={submitLogin}
       >
         <Row className="align-items-center input-fields">
           <Form.Text className="text-muted"></Form.Text>
@@ -86,12 +96,7 @@ const LoginForm = () => {
             </Col>
           </Form.Group>
         </Row>
-        <Button
-          disabled={buttonDisabled}
-          variant="primary"
-          type="submit"
-          onClick={() => {}}
-        >
+        <Button type="submit" disabled={buttonDisabled} variant="primary">
           Login
         </Button>
       </Form>
